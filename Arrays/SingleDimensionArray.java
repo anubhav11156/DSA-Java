@@ -37,7 +37,7 @@ public class SingleDimensionArray {
     }
     // search value in array
     public void searchInArray(int valueToSearch){
-        for (int i=0; i>arr.length; i++){
+        for (int i=0; i<arr.length; i++){
             if(arr[i]==valueToSearch){
                 System.out.print("Value is found at the index: " + i);
                 return;
@@ -46,7 +46,14 @@ public class SingleDimensionArray {
         System.out.println("Value is not found!");
     }
 
-    public void deleteValue()
+    public void deleteValue(int valuToBeDeleteIndex){
+        try{
+            arr[valuToBeDeleteIndex] = Integer.MIN_VALUE;
+            System.out.println("\nSuccessfully deleted!");
+        }catch(ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array index not in range!");
+        }
+    }
 
     public static void main(String[] args){
         SingleDimensionArray sda = new SingleDimensionArray(10);
@@ -57,5 +64,8 @@ public class SingleDimensionArray {
         sda.traverseArray();
         sda.searchInArray(20);
         sda.searchInArray(13);
+        sda.deleteValue(0); // TC = O(1), SC = O(1)
+        //now print int 
+        System.out.println(sda.arr[0]);
     }
 }
