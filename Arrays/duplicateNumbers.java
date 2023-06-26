@@ -5,8 +5,8 @@ import java.util.*;
 // T.C : O(n^2)
 public class duplicateNumbers {
 
-    public static ArrayList<Integer> removeDuplicates(int[] arr){
-        ArrayList<Integer> newArray = new ArrayList<>();
+    public static JavaArrayList<Integer> removeDuplicates(int[] arr){
+        JavaArrayList<Integer> newArray = new JavaArrayList<>();
         // logic
         for(int i=0; i<arr.length; i++){
             boolean isDuplicate = false;
@@ -32,7 +32,7 @@ public class duplicateNumbers {
         for(int i=0; i<size; i++){
             arr[i] = console.nextInt();
         }
-        ArrayList<Integer> newArray = removeDuplicates(arr);
+        JavaArrayList<Integer> newArray = removeDuplicates(arr);
         System.out.print(newArray);
         console.close();
     }
