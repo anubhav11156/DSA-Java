@@ -1,39 +1,37 @@
 package LeetCode;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class MaximumProductOfThreeNumbers {
 
     public static int maximumProduct(int[] nums) {
-        int product = 1;
-        // sort the array in descending order and find product of first three numbers
-        for(int i=0; i<nums.length; i++){
-            for(int j=i+1; j<nums.length; j++){
-                if(Math.abs(nums[i])<Math.abs(nums[j])){
-                    int temp = nums[i];
-                    nums[i] = nums[j];
-                    nums[j] = temp;
-                }
-            }
+        if (nums.length <= 3) {
+            return nums[0] * nums[1] * nums[2];
         }
-        System.out.print("sorted: "+Arrays.toString(nums));
-
-        for(int i =0; i<3; i++){
+        int product = 1;
+        int k = 3;
+        for (int i = 0; i < k; i++) {
             product *= nums[i];
         }
-        return product;
+
+        int maxProduct = product;
+        for (int i = k; i < nums.length; i++) {
+            product = product * nums[i];
+            product /= nums[i - k];
+            maxProduct = Math.max(maxProduct, product);
+        }
+        return maxProduct;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
         int s;
         s = console.nextInt();
         int[] arr = new int[s];
-        for(int i=0; i<s; i++){
+        for (int i = 0; i < s; i++) {
             arr[i] = console.nextInt();
         }
-        System.out.println("Answer: "+maximumProduct(arr));
+        System.out.println("Answer: " + maximumProduct(arr));
         console.close();
     }
 }

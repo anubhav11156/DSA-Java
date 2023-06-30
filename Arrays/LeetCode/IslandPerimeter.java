@@ -6,50 +6,42 @@ import java.util.Scanner;
 public class IslandPerimeter {
 
     public static int islandPerimeter(int[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0].length == 0)
+            return 0;
         int perimeter = 0;
-        int row = grid.length;
-        int col = grid[0].length;
-        int rowCount = 0;
-        int colCount = 0;
-        for(int i=0; i<row; i++ ){
-            for(int j=0; j<col; j++){
-                if(grid[i][j]==0){
-                    continue;
-                }else{
-                    int l = j-1;
-                    int r = j+1;
-                    int u = i-1;
-                    int b = i+1;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] == 1) {
+                    perimeter += 4;
 
-                    if(i==0 && j==0){
-                        rowCount +=2;
+                    // now check for left and upper cell
+                    if (i > 0 && grid[i - 1][j] == 1) { // check for left
+                        perimeter -= 2;
+                    }
 
-                    }else if(i==row-1 && j==0){
-                        rowCount++;
-                    }else if(j==0){
-                        colCount++;
-                    }else if(j==col-1){
-                        colCount++;
+                    if (j > 0 && grid[i][j - 1] == 1) { // check for upper
+                        perimeter -= 2;
                     }
                 }
+
             }
         }
         return perimeter;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
         int row, col;
         row = console.nextInt();
         col = console.nextInt();
         int[][] arr = new int[row][col];
-        for(int i=0; i<row; i++){
-            for(int j=0; j<col; j++){
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
                 arr[i][j] = console.nextInt();
             }
         }
-        System.out.println("Array: "+Arrays.deepToString(arr));
-        System.out.println("Answer: "+islandPerimeter(arr));
+        System.out.println("Array: " + Arrays.deepToString(arr));
+        System.out.println("Answer: " + islandPerimeter(arr));
         console.close();
     }
 }
